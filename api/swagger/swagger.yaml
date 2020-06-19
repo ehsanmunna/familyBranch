@@ -1,3 +1,4 @@
+openapi: 3.0.1
 info:
   version: "0.0.1"
   title: "Family Branch"
@@ -7,16 +8,9 @@ info:
     name: "Ehsan Munna"
     email: "grmunnabd@gmail.com"
 
-host: "localhost:3000"
-basePath: "/api/v1/"
-schemes:
-  - http
-  - https
-
-consumes:
-  - application/json
-produce:
-  - application/json
+servers:
+  - url: 'http://localhost:3000/api/v1'
+  - url: 'https://localhost:3000/api/v1'
 
 tags:
 - name: "Person"
@@ -25,30 +19,100 @@ tags:
   description: "api for managing family person"
 
 paths:
-  person:
+  /persons:
     post:
       tags:
       - "Person"
       summary: "Add a new person"
-      consumes:
-      - "application/json"
-      - "application/xml"
-      parameters:
-      - in: "body"
-        name: "body"
-        description: "Person object that needs to be added"
-        required: true
-        schema:
-          $ref: "#/definitions/Person"
+      requestBody:
+        description: Person object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
       responses:
         "405":
           description: "Invalid input"
+    get:
+      tags:
+        - "Person"
+      summary: find all person
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+        '400':
+          description: Invalid status value
+          content: {}
+  /familyperson:
+    post:
+      tags:
+        - "Family Person"
+      summary: "Add a new family person"
+      requestBody:
+        description: Family Person object that needs to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FamilyPerson'
+      responses:
+        "405":
+          description: "Invalid input"
+    get:
+      tags:
+        - "Family Person"
+      summary: find all family person
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FamilyPerson'
+        '400':
+          description: Invalid status value
+          content: {}
+  /familyperson/details:
+    get:
+      tags:
+        - "Family Person"
+      summary: find all family person in details
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FamilyPerson'
+        '400':
+          description: Invalid status value
+          content: {}
 
-definitions:
-  Person:
-    type: "Object"
-    properties:
-      name:
-        type: "string"
-      phone:
-        type: "string"
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        name:
+          type: "string"
+        phone:
+          type: "string"
+
+    FamilyPerson:
+        type: object
+        properties:
+          person:
+            type: "string"
+          spouse:
+            type: "string"
+          children:
+            type: "string"

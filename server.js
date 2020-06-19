@@ -8,7 +8,9 @@ var secrect = require('./dbsecrect.js');
 var app = express();
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./api/swagger/swagger.yaml');
+// const swaggerDocument = require('./swagger.json');
 
 // const router = require('express').Router();
 
