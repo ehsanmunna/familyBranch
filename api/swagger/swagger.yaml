@@ -1,0 +1,27 @@
+swagger: "2.0"
+
+info:
+  version: "0.0.1"
+  title: "Family Branch"
+  desctiption: "desc."
+
+  contact:
+    name: "Ehsan Munna"
+    email: "grmunnabd@gmail.com"
+
+host: "localhost:3000"
+basePath: "/api/v1/"
+schemes:
+  - http
+  - https
+
+consumes:
+  - application/json
+produce:
+  - application/json
+
+tags:
+- name: "Person"
+  description: "api for managing person"
+- name: "Family Person"
+  description: "api for managing family person"

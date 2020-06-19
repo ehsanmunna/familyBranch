@@ -1,0 +1,8 @@
+// Copy and rename this file to dbsectect.js and set user and password
+const user = "";
+const pass = "";
+
+module.exports = {
+    password: pass,
+    userName: user
+}

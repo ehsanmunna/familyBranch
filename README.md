@@ -2,6 +2,15 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
+### start project ###
+
+* nodemon server.js
+* node server.js
+
+### API Documentation ###
+
+* http://localhost:3000/api-docs
+
 ### What is this repository for? ###
 
 * Quick summary
@@ -16,6 +25,7 @@ This README would normally document whatever steps are necessary to get your app
 * Database configuration
 * How to run tests
 * Deployment instructions
+
 
 ### Contribution guidelines ###
 

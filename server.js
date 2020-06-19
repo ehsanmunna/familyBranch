@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cors = require('cors');
+var secrect = require('./dbsecrect');
 var app = express();
 
 const swaggerUi = require('swagger-ui-express');
@@ -13,7 +14,7 @@ const swaggerDocument = require('./swagger.json');
 
 //Mongo connection
 // mongoose.connect('mongodb://munna:m123456@ds263048.mlab.com:63048/ourfamily', { useNewUrlParser: true, useCreateIndex: true });
-mongoose.connect('mongodb://ehsan:M123456@ds263048.mlab.com:63048/ourfamily', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb://${secrect.userName}:${secrect.password}@ds263048.mlab.com:63048/ourfamily`, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongo connection error:'));
 db.once('open', function() {
@@ -26,8 +27,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use('/api/persons', require('./Route'));
-app.use('/api/familyperson', require('./familyperson_route'));
+app.use('/api/v1/persons', require('./Route'));
+app.use('/api/v1/familyperson', require('./familyperson_route'));
 // app.use('/api/meterUnit', require('./api/routes/MeterUnit'));
 
 //Swagger
