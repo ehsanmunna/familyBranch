@@ -1,9 +1,7 @@
-swagger: "2.0"
-
 info:
   version: "0.0.1"
   title: "Family Branch"
-  desctiption: "desc."
+  description: "desc."
 
   contact:
     name: "Ehsan Munna"
@@ -25,3 +23,32 @@ tags:
   description: "api for managing person"
 - name: "Family Person"
   description: "api for managing family person"
+
+paths:
+  person:
+    post:
+      tags:
+      - "Person"
+      summary: "Add a new person"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Person object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        "405":
+          description: "Invalid input"
+
+definitions:
+  Person:
+    type: "Object"
+    properties:
+      name:
+        type: "string"
+      phone:
+        type: "string"

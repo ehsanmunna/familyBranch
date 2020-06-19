@@ -4,7 +4,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cors = require('cors');
-var secrect = require('./dbsecrect');
+var secrect = require('./dbsecrect.js');
 var app = express();
 
 const swaggerUi = require('swagger-ui-express');
