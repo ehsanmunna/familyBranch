@@ -1,0 +1,128 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Family Tree",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "version": "1.0.1"
+    },
+    "produces": [
+      "application/json"
+    ],
+    "tags": [
+      {
+        "name": "familyTree",
+        "description": "Setup Configuration for family organogram"
+      }
+    ],
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "definitions": {
+      "familyTree": {
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string"},
+          "parent_name": { "type": "string"}
+        }
+      }
+    },
+    "paths": {
+      "/familytree": {
+        "post": {
+          "tags": ["familyTree"],
+          "summary": "Add a new Meter",
+          "description":"Save a new meter",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "description": "Meter object that needs to be added to the store",
+              "schema": {
+                "$ref": "#/definitions/familyTree"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "familyTree"
+          ],
+          "summary": "Returns a list of Meters",
+          "description": "Optional extended description in CommonMark or HTML.",
+          "responses": {
+            "200": {
+              "description": "A JSON array of Meter names"
+            }
+          }
+        }
+      },
+      "/familytree/{id}": {
+          "get": {
+              "tags": ["familyTree"],
+              "summary": "Returns an Object of Meters",
+              "parameters": [
+                {
+                  "in": "path",
+                  "name": "id",
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+          },
+          "put": {
+            "description":"Update meter with id",
+            "tags": ["familyTree"],
+            "summary": "Update a Meter",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "type": "string"
+              }
+              , {
+                "in": "body",
+                "name": "body",
+                "required": true,
+                "description": "Meter object that needs to be update to the store",
+                "schema": {
+                  "$ref": "#/definitions/familyTree"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          },
+          "delete": {
+            "tags": ["familyTree"],
+            "summary": "Delete Meters by id",
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "type": "string",
+                "required": true
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+        }
+      }
+    }
+  }
