@@ -3,6 +3,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var cors = require('cors');
 var app = express();
 
 const swaggerUi = require('swagger-ui-express');
@@ -20,11 +21,13 @@ db.once('open', function() {
 });
 
 app.use(morgan('dev'))
+app.use(cors())
 // app.use(morgan('combined'))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use('/api/familytree', require('./Route'));
+app.use('/api/persons', require('./Route'));
+app.use('/api/familyperson', require('./familyperson_route'));
 // app.use('/api/meterUnit', require('./api/routes/MeterUnit'));
 
 //Swagger
